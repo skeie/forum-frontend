@@ -76,7 +76,7 @@ export default class App extends React.Component {
 
     renderHeader = () => (
         <View style={styles.header}>
-            <Text style={{ color: 'black', fontSize: 32 }}>VGD</Text>
+            <Text type="header">VGD</Text>
         </View>
     );
 

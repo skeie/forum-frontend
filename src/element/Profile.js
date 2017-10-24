@@ -26,7 +26,7 @@ export const ProfileImage = ({ userImage }) => (
 );
 
 export const Date = ({ date }) => (
-    <Text style={{ color: '#DCDDE3' }} numberOfLines={1}>
+    <Text type="date" numberOfLines={1}>
         {date}
     </Text>
 );

@@ -2,14 +2,18 @@ import React, { Component } from 'react';
 import { Text as RNText, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-    style: { color: 'white' },
+    style: { color: 'white', fontFamily: 'poppins' },
+    header: { color: 'black', fontSize: 32, fontFamily: 'bold' },
+    date: { color: '#DCDDE3', fontFamily: 'italic' },
 });
 
 class Text extends Component {
     render() {
-        const { style = {} } = this.props;
+        const { style = {}, type = null } = this.props;
         return (
-            <RNText {...this.props} style={[styles.style, style]}>
+            <RNText
+                {...this.props}
+                style={[styles.style, style, type && styles[type]]}>
                 {this.props.children}
             </RNText>
         );
