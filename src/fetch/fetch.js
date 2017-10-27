@@ -1,5 +1,7 @@
 import queryString from 'query-string';
-const baseURl = __DEV__ ? 'http://localhost:3000' : 'http://localhost:3000';
+const baseURl = !__DEV__
+    ? 'http://localhost:3000'
+    : 'https://fast-spire-38104.herokuapp.com';
 
 let jwtToken = '';
 

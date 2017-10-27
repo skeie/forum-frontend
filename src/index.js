@@ -23,6 +23,7 @@ export default class App extends React.Component {
     };
 
     pageid = -1;
+    ref = null;
 
     componentDidMount() {
         this.getCurrentPage();
@@ -60,10 +61,17 @@ export default class App extends React.Component {
             console.log('error getting data from backend', error);
         }
 
-        this.setState({
-            posts: data,
-            loading: false,
-        });
+        this.setState(
+            {
+                posts: data,
+                loading: false,
+            },
+            () => {
+                if (this.ref) {
+                    this.ref.scrollToOffset({ offset: 0 });
+                }
+            },
+        );
     };
 
     renderSeparator = () => (
@@ -87,6 +95,10 @@ export default class App extends React.Component {
         </View>
     );
 
+    setRef = ref => {
+        this.ref = ref;
+    };
+
     render() {
         if (this.pageid <= 0) {
             return (
@@ -97,6 +109,7 @@ export default class App extends React.Component {
         }
         return (
             <FlatList
+                ref={this.setRef}
                 data={this.state.posts}
                 renderItem={({ item }) => <Element item={item} />}
                 keyExtractor={({ date }, index) => `${date}-${index}`}
