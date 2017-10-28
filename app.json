@@ -18,10 +18,10 @@
         },
         "ios": {
             "supportsTablet": true,
-            "bundleIdentifier": "com.vgd.vgd-app"
+            "bundleIdentifier": "com.vgd.vgdapp"
         },
         "android": {
-            "package": "com.vgd.vgd-app"
+            "package": "com.vgd.vgdapp"
         }
     }
 }

@@ -76,19 +76,17 @@ function setHeaders(method, body, optHeader) {
 }
 
 async function handleResponse(response) {
-    console.log(response.status, '1337');
     if (response.status === 201 || response.status === 204) return;
     let responseJson;
     try {
         responseJson = await response.json();
     } catch (e) {
-        console.log(e, 'spdap');
         throw {
             message: 'Something went wrong, check if you have internet',
         };
     }
+
     if (response.status >= 400) {
-        console.log(responseJson, 'sapdap');
         // check msg or message here and check for json
         const msg =
             responseJson.message ||

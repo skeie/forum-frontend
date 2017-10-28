@@ -32,7 +32,7 @@ export default class App extends React.Component {
     getPageNumberFromAsync = async () => {
         let currentNumber = 4637;
         try {
-            currentNumber = await getItem(currentPageNumber);
+            currentNumber = (await getItem(currentPageNumber)) || currentNumber;
         } catch (e) {
             console.log(
                 `No number saved, probz first time running the app, defaulter to ${currentNumber}`,

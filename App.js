@@ -11,6 +11,10 @@ export default class Intro extends React.Component {
         });
     }
 
+    componentDidCatch(error, info) {
+        console.log('ERROR!', error, info);
+    }
+
     render() {
         return <App />;
     }
