@@ -17,7 +17,11 @@
             "assetExts": ["ttf", "mp4"]
         },
         "ios": {
-            "supportsTablet": true
+            "supportsTablet": true,
+            "bundleIdentifier": "com.vgd.vgd-app"
+        },
+        "android": {
+            "package": "com.vgd.vgd-app"
         }
     }
 }
