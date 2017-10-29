@@ -28,7 +28,8 @@ class Arrow extends Component {
         if (this.props.way === 'left') {
             newPageNumber = --newPageNumber;
         }
-        this.props.fetch(newPageNumber);
+
+        this.props.fetch({ pageid: newPageNumber, shouldScrollToTop: true });
     };
 
     componentWillReceiveProps({ way, number }) {
@@ -69,8 +70,6 @@ class Arrow extends Component {
         if (!this.state.clickable) {
             return null;
         }
-
-        console.log('number i arrow', this.props.number);
 
         return (
             <TouchableOpacity onPress={this.onPress}>

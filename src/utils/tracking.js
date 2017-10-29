@@ -1,17 +1,42 @@
-import Expo from 'expo';
-const GOOGLE_ANALYTICS_ROOT_URL = 'analytics.google.com'
-export const sendGoogleAnalytics = (page, data1, data2) => {
-  const options = {
-    method: 'POST',
-    headers: {
-      'User-Agent': 'SuggestionBox',
-    },
-  };
+import { Constants } from 'expo';
+import { Analytics, Hits as GAHits } from 'react-native-google-analytics';
 
-  const uri = `${GOOGLE_ANALYTICS_ROOT_URL}${Expo.Constants.deviceId}&cd=${page}&cd1=${data1}&cd2=${data2}`;
-  const googleURL = encodeURI(uri);
-  fetch(googleURL, options)
-    .catch(error => console.log('Error in sendGoogleAnalytics(): ', error));
+class MockAnalytics {
+    constructor() {}
+
+    openApp = () => {};
+
+    sendEvent = () => {};
 }
 
-// v=1&t=pageview&tid=UA-108379879-1&cid=555&dh=mydemo.com&dp=%2Fhome&dt=homepage
+class AppAnalytics {
+    constructor() {
+        this.init();
+    }
+
+    init = async () => {
+        console.log('hit?');
+        const userAgent = await Constants.getWebViewUserAgentAsync();
+        console.log('sapdap', userAgent);
+        const clientId = Expo.Constants.deviceId;
+        this.analytics = new Analytics(
+            'UA-108379879-1',
+            clientId,
+            1,
+            userAgent,
+        );
+        this.Appopen();
+    };
+
+    Appopen = () => {
+        const screenView = new GAHits.ScreenView('VGD');
+        this.analytics.send(screenView);
+    };
+
+    sendEvent = (event: string) => {
+        const gEvent = new GAHits.Event(event);
+        this.analytics.send(gEvent);
+    };
+}
+
+export default (__DEV__ ? MockAnalytics : AppAnalytics);

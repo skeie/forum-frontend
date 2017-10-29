@@ -5,6 +5,7 @@ import {
     FlatList,
     Image,
     ActivityIndicator,
+    AppState,
 } from 'react-native';
 import { get } from './fetch/fetch';
 import Post from './element/Post';
@@ -15,19 +16,38 @@ import { Text, theme } from './common';
 import Arrow from './element/arrow';
 import { getItem, setItem } from './utils/asyncStorage';
 import { currentPageNumber } from './utils/constants';
+import AppAnalytics from './utils/tracking';
 
 export default class App extends React.Component {
     state = {
         posts: null,
         loading: false,
+        contentOffset: { x: 0, y: 0 },
     };
 
     pageid = -1;
     ref = null;
 
     componentDidMount() {
+        this.analytics = new AppAnalytics();
         this.getCurrentPage();
     }
+
+    getCurrentcontentOffset = async () => {
+        try {
+            let contentOffset = {
+                y: 0,
+            };
+            contentOffset = await getItem('contentOffset');
+            if (this.ref) {
+                this.ref.scrollToOffset({ offset: contentOffset.y });
+            }
+            return Promise.resolve();
+        } catch (error) {
+            console.log('error getCurrentcontentOffset', error);
+            return Promise.reject(error);
+        }
+    };
 
     getPageNumberFromAsync = async () => {
         let currentNumber = 4637;
@@ -44,21 +64,46 @@ export default class App extends React.Component {
     getCurrentPage = async () => {
         this.setState({
             loading: true,
+            posts: [],
         });
         this.pageid = await this.getPageNumberFromAsync();
-        this.fetch(this.pageid);
+        this.fetch({ pageid: this.pageid, shouldScrollToTop: false });
+        return Promise.resolve();
     };
 
-    fetch = async (pageid: number) => {
+    componentWillMount() {
+        AppState.addEventListener('change', this.handleAppStateChange);
+    }
+
+    componentWillUnmount() {
+        AppState.removeEventListener('change', this.handleAppStateChange);
+    }
+
+    handleAppStateChange = nextAppState => {
+        if (nextAppState === 'background' && this.contentOffset) {
+            setItem('contentOffset', this.contentOffset);
+        }
+    };
+
+    fetch = async ({
+        pageid,
+        shouldScrollToTop = false,
+    }: {
+        pageid: number,
+        shouldScrollToTop: boolean,
+    }) => {
         // let data = posts;
         let data = {};
+        this.analytics.sendEvent(`Fetching page with pageid: ${pageid}`);
         try {
             const res = await get('/', { params: { pageid } });
             data = res.data;
             this.pageid = pageid;
+            !shouldScrollToTop && this.getCurrentcontentOffset();
             setItem(currentPageNumber, pageid);
         } catch (error) {
             console.log('error getting data from backend', error);
+            return Promise.reject(error);
         }
 
         this.setState(
@@ -67,11 +112,12 @@ export default class App extends React.Component {
                 loading: false,
             },
             () => {
-                if (this.ref) {
+                if (this.ref && shouldScrollToTop) {
                     this.ref.scrollToOffset({ offset: 0 });
                 }
             },
         );
+        return Promise.resolve();
     };
 
     renderSeparator = () => (
@@ -99,6 +145,10 @@ export default class App extends React.Component {
         this.ref = ref;
     };
 
+    onSroll = event => {
+        this.contentOffset = event.nativeEvent.contentOffset;
+    };
+
     render() {
         if (this.pageid <= 0) {
             return (
@@ -107,6 +157,9 @@ export default class App extends React.Component {
                 </View>
             );
         }
+
+        console.log(this.pageid);
+
         return (
             <FlatList
                 ref={this.setRef}
@@ -119,6 +172,8 @@ export default class App extends React.Component {
                 ListFooterComponent={this.renderFooter}
                 onRefresh={this.getCurrentPage}
                 refreshing={this.state.loading}
+                onScroll={this.onSroll}
+                initialNumToRender={100}
             />
         );
     }
