@@ -25,10 +25,10 @@ class AppAnalytics {
             1,
             userAgent,
         );
-        this.Appopen();
+        this.AppOpen();
     };
 
-    Appopen = () => {
+    AppOpen = () => {
         const screenView = new GAHits.ScreenView('VGD');
         this.analytics.send(screenView);
     };

@@ -13,7 +13,7 @@ class Text extends Component {
         return (
             <RNText
                 {...this.props}
-                style={[styles.style, style, type && styles[type]]}>
+                style={[styles.style, type && styles[type], style]}>
                 {this.props.children}
             </RNText>
         );

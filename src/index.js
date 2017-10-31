@@ -35,10 +35,9 @@ export default class App extends React.Component {
 
     getCurrentcontentOffset = async () => {
         try {
-            let contentOffset = {
+            const contentOffset = (await getItem('contentOffset')) || {
                 y: 0,
             };
-            contentOffset = await getItem('contentOffset');
             if (this.ref) {
                 this.ref.scrollToOffset({ offset: contentOffset.y });
             }

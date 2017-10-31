@@ -4,6 +4,7 @@ import Post from './Post';
 import { ProfileImage, Username, Date } from './Profile';
 import { Text } from '../common';
 import { getShadowStyle } from '../utils/platform';
+import QuotedText from './QuotedText';
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#FFFFFF',
@@ -42,6 +43,7 @@ class Element extends Component {
                         <Date date={item.date} />
                     </View>
                     <Username username={username} />
+                    {item.quoteText && <QuotedText text={item.quoteText} />}
                     <Post content={item.content} />
                 </View>
             </View>
