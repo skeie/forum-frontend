@@ -44,7 +44,7 @@ class Element extends Component {
                     </View>
                     <Username username={username} />
                     {item.quoteText && <QuotedText text={item.quoteText} />}
-                    <Post content={item.content} />
+                    {item.content && <Post content={item.content} />}
                 </View>
             </View>
         );
