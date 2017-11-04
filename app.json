@@ -1,13 +1,13 @@
 {
     "expo": {
-        "name": "vgd-app",
-        "description": "VGD-app",
-        "slug": "vgd-app",
+        "name": "RM-forum",
+        "description": "RM-forum",
+        "slug": "RM-forum",
         "privacy": "public",
         "sdkVersion": "20.0.0",
         "version": "1.0.0",
         "orientation": "portrait",
-        "primaryColor": "#cccccc",
+        "primaryColor": "#FD8C80",
         "icon": "./assets/icons/app-icon.png",
         "loading": {
             "icon": "./assets/icons/loading-icon.png",

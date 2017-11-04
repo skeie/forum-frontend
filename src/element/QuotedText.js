@@ -4,7 +4,6 @@ import { View } from 'react-native';
 import { Text, theme } from '../common';
 
 function QuotedText({ text }: { text: string }) {
-    console.log(text, 'sapdap text');
     return (
         <View
             style={{

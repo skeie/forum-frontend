@@ -49,7 +49,7 @@ export default class App extends React.Component {
     };
 
     getPageNumberFromAsync = async () => {
-        let currentNumber = 4637;
+        let currentNumber = 4643;
         try {
             currentNumber = (await getItem(currentPageNumber)) || currentNumber;
         } catch (e) {
@@ -129,7 +129,10 @@ export default class App extends React.Component {
 
     renderHeader = () => (
         <View style={styles.header}>
-            <Text type="header">VGD</Text>
+            <Image source={require('../assets/icons/app-icon.png')} />
+            <Text style={{ marginTop: 5 }} type="header">
+                Real Madrid Forum
+            </Text>
         </View>
     );
 
@@ -195,9 +198,8 @@ const styles = StyleSheet.create({
     },
     header: {
         backgroundColor: theme.primary,
-        height: 70,
-        marginBottom: 30,
-        justifyContent: 'center',
+        padding: 10,
         alignItems: 'center',
+        flexDirection: 'row',
     },
 });

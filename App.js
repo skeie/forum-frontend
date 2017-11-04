@@ -11,7 +11,6 @@ export default class Intro extends React.Component {
     async componentDidMount() {
         await Font.loadAsync({
             poppins: require('./assets/Poppins-Regular.ttf'),
-            bold: require('./assets/Poppins-SemiBold.ttf'),
             italic: require('./assets/Poppins-LightItalic.ttf'),
         });
         this.setState({

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { View, StyleSheet } from 'react-native';
 import Post from './Post';
 import { ProfileImage, Username, Date } from './Profile';
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     },
 });
 
-class Element extends Component {
+class Element extends PureComponent {
     render() {
         const { item } = this.props;
         const { item: { user: { userImage, username } } } = this.props;

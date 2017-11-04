@@ -1,23 +1,27 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View } from 'react-native';
+import Hyperlink from 'react-native-hyperlink';
 import { Text } from '../common';
-class Post extends Component {
-    render() {
-        return (
-            <View style={{ width: '100%' }}>
-                {this.props.content.map((content, index) => (
+
+const Post = ({ content }) => {
+    return (
+        <View style={{ width: '100%' }}>
+            {content.map((content, index) => (
+                <Hyperlink
+                    linkDefault
+                    key={`${content}-${index}`}
+                    linkStyle={{ color: '#C0DEEF' }}>
                     <Text
-                        key={`${content}-${index}`}
                         style={{
                             marginTop: index > 0 ? 10 : 0,
                             color: '#B6B9BB',
                         }}>
                         {content}
                     </Text>
-                ))}
-            </View>
-        );
-    }
-}
+                </Hyperlink>
+            ))}
+        </View>
+    );
+};
 
 export default Post;

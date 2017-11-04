@@ -15,9 +15,7 @@ class AppAnalytics {
     }
 
     init = async () => {
-        console.log('hit?');
         const userAgent = await Constants.getWebViewUserAgentAsync();
-        console.log('sapdap', userAgent);
         const clientId = Expo.Constants.deviceId;
         this.analytics = new Analytics(
             'UA-108379879-1',

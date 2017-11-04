@@ -3,7 +3,7 @@ import { Text as RNText, StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     style: { color: 'white', fontFamily: 'poppins' },
-    header: { color: 'black', fontSize: 32, fontFamily: 'bold' },
+    header: { color: 'white', fontSize: 20, fontFamily: 'poppins' },
     date: { color: '#DCDDE3', fontFamily: 'italic' },
 });
 
