@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Date renders correctly 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  disabled={false}
+  ellipsizeMode="tail"
+  numberOfLines={1}
+  style={
+    Array [
+      Object {
+        "color": "white",
+        "fontFamily": "poppins",
+      },
+      Object {
+        "color": "#DCDDE3",
+        "fontFamily": "italic",
+      },
+      Object {},
+    ]
+  }
+  type="date"
+>
+  19/04
+</Text>
+`;
+
+exports[`ProfileImage renders correctly 1`] = `
+<Image
+  source={
+    Object {
+      "uri": undefined,
+    }
+  }
+  style={
+    Object {
+      "borderRadius": 10,
+      "height": 80,
+      "marginRight": 10,
+      "width": 80,
+    }
+  }
+/>
+`;
+
+exports[`Username renders correctly 1`] = `
+<Text
+  accessible={true}
+  allowFontScaling={true}
+  disabled={false}
+  ellipsizeMode="tail"
+  style={
+    Array [
+      Object {
+        "color": "white",
+        "fontFamily": "poppins",
+      },
+      null,
+      Object {
+        "color": "#55555C",
+        "fontSize": 20,
+        "marginTop": 20,
+      },
+    ]
+  }
+>
+  dahBest
+</Text>
+`;

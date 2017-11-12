@@ -2,21 +2,29 @@
     "main": "node_modules/expo/AppEntry.js",
     "private": true,
     "scripts": {
-        "flow": "flow"
+        "flow": "flow",
+        "test": "jest"
+    },
+    "repository": {
+        "url": "https://github.com/skeie/forum-frontend"
     },
     "dependencies": {
         "expo": "^22.0.0",
+        "query-string": "^5.0.0",
         "react": "16.0.0-beta.5",
-        "react-native":
-            "https://github.com/expo/react-native/archive/sdk-22.0.2.tar.gz",
-        "react-native-hyperlink": "^0.0.11",
-        "query-string": "^5.0.0"
+        "react-native": "https://github.com/expo/react-native/archive/sdk-22.0.2.tar.gz",
+        "react-native-hyperlink": "^0.0.11"
     },
     "name": "vgd-frontend",
     "version": "0.0.0",
     "description": "RM-forum",
     "author": "Skeie",
     "devDependencies": {
-        "flow-bin": "0.53.0"
+        "flow-bin": "0.53.0",
+        "jest": "^21.2.1",
+        "react-test-renderer": "^16.1.0"
+    },
+    "jest": {
+        "preset": "react-native"
     }
 }

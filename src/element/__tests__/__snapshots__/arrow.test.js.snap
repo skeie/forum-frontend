@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Arrow renders correctly left way 1`] = `
+<ActivityIndicator
+  animating={true}
+  color="white"
+  hidesWhenStopped={true}
+  size="small"
+/>
+`;
+
+exports[`Arrow renders correctly right way 1`] = `
+<ActivityIndicator
+  animating={true}
+  color="white"
+  hidesWhenStopped={true}
+  size="small"
+/>
+`;

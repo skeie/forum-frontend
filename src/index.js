@@ -103,7 +103,7 @@ export default class App extends React.Component<*, State> {
         shouldScrollToTop = false,
     }: {
         pageid: number,
-        shouldScrollToTop: boolean,
+        shouldScrollToTop?: boolean,
     }) => {
         // let data = posts;
         let data = {};
