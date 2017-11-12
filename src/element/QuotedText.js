@@ -1,0 +1,23 @@
+//@flow
+
+import React from 'react';
+import { View } from 'react-native';
+import { Text, theme } from '../common';
+
+function QuotedText({ text }: { text: string }) {
+    return (
+        <View
+            style={{
+                backgroundColor: theme.primary,
+                padding: 10,
+                borderRadius: 10,
+                marginVertical: 10,
+            }}>
+            <Text style={{ color: 'white', fontSize: 14 }} type="date">
+                {text}
+            </Text>
+        </View>
+    );
+}
+
+export default QuotedText;
